@@ -16,14 +16,15 @@ app.use(cookieParser());
 //app.use("api/v1/users", userRouter);
 app.use("/users", userRouter); // user router
 app.use("/task", taskRouter); // task router
+// CORS Middleware
 app.use(
   cors({
-    origin: [process.env.FRONTEND_URL],
+    origin: "http://localhost:5173",
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true, // this for to cookies reach on the frontend
+    credentials: true, // Allow cookies to be sent
   })
-); // cors middleware for cross origin request
+);
 
 app.get("/", (req, res) => {
   res.send("Nice Working");
