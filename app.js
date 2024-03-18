@@ -17,6 +17,8 @@ app.use(cookieParser());
 app.use("/users", userRouter); // user router
 app.use("/task", taskRouter); // task router
 // CORS Middleware
+
+app.options("*", cors());
 app.use(
   cors({
     origin: [process.env.FRONTEND_URL],
