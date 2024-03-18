@@ -16,17 +16,14 @@ app.use(cookieParser());
 //app.use("api/v1/users", userRouter);
 app.use("/users", userRouter); // user router
 app.use("/task", taskRouter); // task router
-// CORS Middleware
+// Configure CORS
+const corsOptions = {
+  origin: process.env.FRONTEND_URL, // Allow requests from frontend URL
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true, // Allow sending cookies
+};
 
-app.options("*", cors());
-app.use(
-  cors({
-    origin: [process.env.FRONTEND_URL],
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
-  })
-);
-
+app.use(cors(corsOptions)); // Enable CORS for all routes
 app.get("/", (req, res) => {
   res.send("Nice Working");
 });
