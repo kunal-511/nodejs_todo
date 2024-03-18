@@ -4,7 +4,7 @@ import taskRouter from "./routes/task.js";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import { errorMiddleware } from "./middlewares/error.js";
-import cors from "cors"
+import cors from "cors";
 dotenv.config({
   path: "./data/config.env",
 });
@@ -16,16 +16,18 @@ app.use(cookieParser());
 //app.use("api/v1/users", userRouter);
 app.use("/users", userRouter); // user router
 app.use("/task", taskRouter); // task router
-app.use(cors({
-  origin:[process.env.FRONTEND_URL],
-  methods:["GET","POST","PUT","DELETE"],
-  credentials:true // this for to cookies reach on the frontend 
-})) // cors middleware for cross origin request
+app.use(
+  cors({
+    // origin:[process.env.FRONTEND_URL],
+    origin: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true, // this for to cookies reach on the frontend
+  })
+); // cors middleware for cross origin request
 
 app.get("/", (req, res) => {
   res.send("Nice Working");
 });
 
-
 // Using error middleware
-app.use(errorMiddleware)
+app.use(errorMiddleware);
