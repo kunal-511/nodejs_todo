@@ -18,8 +18,8 @@ app.use("/users", userRouter); // user router
 app.use("/task", taskRouter); // task router
 app.use(
   cors({
-    // origin:[process.env.FRONTEND_URL],
-    origin: true,
+    origin: [process.env.FRONTEND_URL],
+
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true, // this for to cookies reach on the frontend
   })
