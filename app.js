@@ -19,8 +19,8 @@ app.use("/task", taskRouter); // task router
 app.use(
   cors({
     origin: [process.env.FRONTEND_URL],
-
     methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true, // this for to cookies reach on the frontend
   })
 ); // cors middleware for cross origin request
